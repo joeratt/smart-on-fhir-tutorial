@@ -24,6 +24,11 @@
                       }
                     }
                   });
+        var immunizations = smart.patient.api.fetchAll({
+            type: 'Immunization'
+        });
+
+        console.log('Immunizations' + immunizations);
 
         $.when(pt, obv).fail(onError);
 
