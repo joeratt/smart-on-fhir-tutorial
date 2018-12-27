@@ -24,11 +24,11 @@
                       }
                     }
                   });
-        var immunizations = smart.patient.api.fetchAll({
+       /* var immunizations = smart.patient.api.fetchAll({
             type: 'Immunization'
         });
 
-        console.log('Immunizations' + immunizations);
+        console.log('Immunizations' + immunizations);*/
 
         $.when(pt, obv).fail(onError);
 
