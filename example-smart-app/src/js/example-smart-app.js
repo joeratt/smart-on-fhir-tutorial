@@ -45,7 +45,8 @@
             lname = patient.name[0].family.join(' ');
           }
 
-          var height = byCodes('8302-2');
+          //var height = byCodes('8302-2');
+          var height = byCodes('3137-7');
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
           var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
           var hdl = byCodes('2085-9');
