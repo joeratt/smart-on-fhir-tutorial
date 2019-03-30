@@ -28,8 +28,8 @@
           type: 'Appointment',
           query: {
               date: {
-                $ge: '2017-01-01',
-                $le: '2020-01-01'
+                $ge: 'ge2017-01-01',
+                $le: 'lt2020-01-01'
               },
               patient: patient.id,
           }
