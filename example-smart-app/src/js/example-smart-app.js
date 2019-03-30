@@ -124,9 +124,7 @@
         var actor = participant.actor;
         if(actor.reference !== undefined) {
           if(actor.reference.split('\/')[0] === 'Location') {
-            place = actor.reference.display;
-            console.log("Found display: ", actor.reference.display);
-            console.log("Found place: ", place);
+            place = actor.display;
             return true;
           }
         }
