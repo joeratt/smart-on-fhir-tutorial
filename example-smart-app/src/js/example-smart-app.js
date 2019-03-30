@@ -116,8 +116,8 @@
   }
 
   function parseAppts(appointments) {
-    parsedAppts = appointments.map(appt => {
-      parsedAppt = defaultAppt();
+    var parsedAppts = appointments.map(appt => {
+      var parsedAppt = defaultAppt();
       parsedAppt.description = appt.description;
       parsedAppt.date_time = appt.start;
 
