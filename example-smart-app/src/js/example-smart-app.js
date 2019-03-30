@@ -82,6 +82,8 @@
           var parsedAppts = parseAppts(appts);
           console.log('Parsed Appointments: ', parsedAppts);
 
+          p.appointments = parseAppts;
+
           ret.resolve(p);
         });
       } else {
@@ -105,6 +107,7 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
+      appointments: {value: ''},
     };
   }
 
@@ -203,7 +206,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     //$('#ldl').html(p.ldl);
     //$('#hdl').html(p.hdl);
-    $('#appointments').html('')
+    $('#appointments').html(makePrettyAppts(p.appointments))
   };
 
 })(window);
