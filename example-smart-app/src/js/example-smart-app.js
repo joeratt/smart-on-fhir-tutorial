@@ -25,13 +25,6 @@
                     }
                   });
         var appts = smart.patient.api.fetchAll({
-            type: 'Appointment',
-            query: {
-                date: 2017,
-                patient: 4478007,
-            }
-        });
-        var appts_dynamic = smart.patient.api.fetchAll({
           type: 'Appointment',
           query: {
               date: 2017,
@@ -44,14 +37,12 @@
 
         console.log('Immunizations' + immunizations);*/
 
-        $.when(pt, obv, appts).fail(onError);
+        $.when(pt, appts).fail(onError);
 
-        $.when(pt, obv, appts, appts_dynamic).done(function(patient, obv, appts, appts_dynamic) {
-          console.log(obv);
+        $.when(pt, appts).done(function(patient, appts) {
           console.log(patient);
-          console.log("Appts, hard-code: ", appts);
-          console.log("Appts, dynamic-code: ", appts_dynamic);
-          var byCodes = smart.byCodes(obv, 'code');
+          console.log("Appts: ", appts);
+          //var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
           var fname = '';
@@ -62,30 +53,34 @@
             lname = patient.name[0].family.join(' ');
           }
 
-          //var height = byCodes('8302-2');
-          var height = byCodes('3137-7');
-          var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
-          var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
-          var hdl = byCodes('2085-9');
-          var ldl = byCodes('2089-1');
+          // //var height = byCodes('8302-2');
+          // var height = byCodes('3137-7');
+          // var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
+          // var diastolicbp = getBloodPressureValue(byCodes('55284-4'),'8462-4');
+          // var hdl = byCodes('2085-9');
+          // var ldl = byCodes('2089-1');
 
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
-          p.height = getQuantityValueAndUnit(height[0]);
+          // p.height = getQuantityValueAndUnit(height[0]);
 
-          if (typeof systolicbp != 'undefined')  {
-            p.systolicbp = systolicbp;
-          }
+          // if (typeof systolicbp != 'undefined')  {
+          //   p.systolicbp = systolicbp;
+          // }
 
-          if (typeof diastolicbp != 'undefined') {
-            p.diastolicbp = diastolicbp;
-          }
+          // if (typeof diastolicbp != 'undefined') {
+          //   p.diastolicbp = diastolicbp;
+          // }
 
-          p.hdl = getQuantityValueAndUnit(hdl[0]);
-          p.ldl = getQuantityValueAndUnit(ldl[0]);
+          // p.hdl = getQuantityValueAndUnit(hdl[0]);
+          // p.ldl = getQuantityValueAndUnit(ldl[0]);
+
+
+          parsedAppts = parseAppts(appts);
+          console.log('Parsed Appointments: ', parsedAppts);
 
           ret.resolve(p);
         });
@@ -111,6 +106,25 @@
       ldl: {value: ''},
       hdl: {value: ''},
     };
+  }
+
+  function defaultAppt(){
+    return {
+      description: {value: ''},
+      date_time: {value: ''},
+    };
+  }
+
+  function parseAppts(appointments) {
+    parsedAppts = appointments.map(appt => {
+      parsedAppt = defaultAppt();
+      parsedAppt.description = appt.description;
+      parsedAppt.date_time = appt.start;
+
+      return parsedAppt;
+    });
+
+    return parseAppts
   }
 
   function getBloodPressureValue(BPObservations, typeOfPressure) {
@@ -153,6 +167,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     //$('#ldl').html(p.ldl);
     //$('#hdl').html(p.hdl);
+    $('#appointments').html('')
   };
 
 })(window);
