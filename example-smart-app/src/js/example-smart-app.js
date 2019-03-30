@@ -126,7 +126,7 @@
         console.log("actor: ", actor);
 
         if(actor.reference !== undefined) {
-          if(actor.reference.split('\/') === 'Location') {
+          if(actor.reference.split('\/')[0] === 'Location') {
             place = actor.reference.display;
             console.log("Found place: ", place);
             return true;
