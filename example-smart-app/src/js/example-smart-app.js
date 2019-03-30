@@ -28,7 +28,7 @@
             type: 'Appointment',
             query: {
                 date: 2017,
-                patient: pt.id,
+                patient: 4478007,
             }
         });
        /* var immunizations = smart.patient.api.fetchAll({
