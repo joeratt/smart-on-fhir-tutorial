@@ -79,7 +79,7 @@
           // p.ldl = getQuantityValueAndUnit(ldl[0]);
 
 
-          parsedAppts = parseAppts(appts);
+          var parsedAppts = parseAppts(appts);
           console.log('Parsed Appointments: ', parsedAppts);
 
           ret.resolve(p);
