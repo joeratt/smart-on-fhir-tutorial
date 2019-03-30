@@ -124,7 +124,7 @@
       return parsedAppt;
     });
 
-    return parseAppts
+    return parsedAppts
   }
 
   function getBloodPressureValue(BPObservations, typeOfPressure) {
