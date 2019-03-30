@@ -82,7 +82,7 @@
           var parsedAppts = parseAppts(appts);
           console.log('Parsed Appointments: ', parsedAppts);
 
-          p.appointments = parseAppts;
+          p.appointments = parsedAppts;
 
           ret.resolve(p);
         });
