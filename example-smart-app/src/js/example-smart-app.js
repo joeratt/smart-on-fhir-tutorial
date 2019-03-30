@@ -119,17 +119,21 @@
   function parsePlace(participants) {
     var place = '';
 
-    participants.forEach(function(participant){
+    participants.some(function(participant){
       console.log("participant: ", participant);
       if(participant.actor !== undefined) {
         var actor = participant.actor;
+        console.log("actor: ", actor);
+
         if(actor.reference !== undefined) {
           if(actor.reference.split('\/') === 'Location') {
             place = actor.reference.display;
             console.log("Found place: ", place);
+            return true;
           }
         }
       }
+      return false;
     });
     return place;
   }
