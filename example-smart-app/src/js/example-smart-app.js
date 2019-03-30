@@ -83,7 +83,7 @@
 
 
           var parsedAppts = parseAppts(appts);
-          parseAppts.sort(function(a,b) {
+          parsedAppts.sort(function(a,b) {
             return b.date_time - a.date_time;
           });
 
