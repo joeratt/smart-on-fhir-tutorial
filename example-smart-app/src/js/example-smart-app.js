@@ -111,14 +111,33 @@
   function defaultAppt(){
     return {
       description: {value: ''},
+      place: {value: ''},
       date_time: {value: ''},
     };
+  }
+
+  function parsePlace(participants) {
+    var place = '';
+
+    participants.forEach(function(participant){
+      if(participant.actor !== undefined) {
+        var actor = participant.actor;
+        if(actor.reference !== undefined) {
+          if(actor.reference.split('\/') === 'Location') {
+            place = actor.reference.display;
+            console.log("Found place: ", place);
+          }
+        }
+      }
+    });
+    return place;
   }
 
   function parseAppts(appointments) {
     var parsedAppts = appointments.map(appt => {
       var parsedAppt = defaultAppt();
       parsedAppt.description = appt.description;
+      parsedAppt.place = parsePlace(appt.participant);
       parsedAppt.date_time = appt.start;
 
       return parsedAppt;
