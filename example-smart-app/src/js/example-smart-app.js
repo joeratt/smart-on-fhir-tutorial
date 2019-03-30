@@ -120,6 +120,7 @@
     var place = '';
 
     participants.forEach(function(participant){
+      console.log("participant: ", participant);
       if(participant.actor !== undefined) {
         var actor = participant.actor;
         if(actor.reference !== undefined) {
