@@ -31,6 +31,13 @@
                 patient: 4478007,
             }
         });
+        var appts_dynamic = smart.patient.api.fetchAll({
+          type: 'Appointment',
+          query: {
+              date: 2017,
+              patient: patient.id,
+          }
+      });
        /* var immunizations = smart.patient.api.fetchAll({
             type: 'Immunization'
         });
@@ -39,10 +46,11 @@
 
         $.when(pt, obv, appts).fail(onError);
 
-        $.when(pt, obv, appts).done(function(patient, obv, appts) {
+        $.when(pt, obv, appts, appts_dynamic).done(function(patient, obv, appts, appts_dynamic) {
           console.log(obv);
           console.log(patient);
-          console.log(appts);
+          console.log("Appts, hard-code: ", appts);
+          console.log("Appts, dynamic-code: ", appts_dynamic);
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
