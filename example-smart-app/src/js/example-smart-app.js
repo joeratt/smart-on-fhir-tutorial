@@ -120,14 +120,12 @@
     var place = '';
 
     participants.some(function(participant){
-      console.log("participant: ", participant);
       if(participant.actor !== undefined) {
         var actor = participant.actor;
-        console.log("actor: ", actor);
-
         if(actor.reference !== undefined) {
           if(actor.reference.split('\/')[0] === 'Location') {
             place = actor.reference.display;
+            console.log("Found display: ", actor.reference.display);
             console.log("Found place: ", place);
             return true;
           }
