@@ -83,7 +83,9 @@
 
 
           var parsedAppts = parseAppts(appts);
-          console.log('Parsed Appointments: ', parsedAppts);
+          parseAppts.sort(function(a,b) {
+            return b.date_time - a.date_time;
+          });
 
           p.appointments = parsedAppts;
 
@@ -145,7 +147,7 @@
       var parsedAppt = defaultAppt();
       parsedAppt.description = appt.description;
       parsedAppt.place = parsePlace(appt.participant);
-      parsedAppt.date_time = appt.start;
+      parsedAppt.date_time = new Date(appt.start);
 
       return parsedAppt;
     });
