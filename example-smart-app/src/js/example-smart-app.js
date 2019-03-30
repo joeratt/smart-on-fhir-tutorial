@@ -107,7 +107,7 @@
       diastolicbp: {value: ''},
       ldl: {value: ''},
       hdl: {value: ''},
-      appointments: {value: ''},
+      appointments: {value: []},
     };
   }
 
@@ -206,7 +206,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     //$('#ldl').html(p.ldl);
     //$('#hdl').html(p.hdl);
-    $('#appointments').html(makePrettyAppts(p.appointments))
+    $('#appointments').html(makePrettyAppts(p.appointments));
   };
 
 })(window);
