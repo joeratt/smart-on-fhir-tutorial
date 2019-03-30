@@ -175,6 +175,22 @@
     }
   }
 
+  function makePrettyAppts(appts) {
+    var thing = $('<table>');
+    thing.append('<tr><th>Description</th><th>Date &amp; Time</th><th>Place</th></tr>');
+
+    appts.forEach(function(appt) {
+      var tr = $('<tr>');
+      ['description', 'date_time', 'place' ].forEach(function(attr) {
+        tr.append('<td>' + appt[attr] + '</td>')
+      });
+      thing.append(tr);
+    });
+
+    return thing;
+
+  }
+
   window.drawVisualization = function(p) {
     $('#holder').show();
     $('#loading').hide();
